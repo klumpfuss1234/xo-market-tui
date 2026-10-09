@@ -1,0 +1,44 @@
+{
+  "name": "xo-market-tui",
+  "version": "0.1.0",
+  "description": "A public, manual-first terminal interface for XO markets",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klumpfuss1234/xo-market-tui.git"
+  },
+  "homepage": "https://github.com/klumpfuss1234/xo-market-tui#readme",
+  "bugs": {
+    "url": "https://github.com/klumpfuss1234/xo-market-tui/issues"
+  },
+  "engines": { "node": ">=20.12" },
+  "bin": { "xo-tui": "dist/cli.js" },
+  "files": ["dist", "docs", "README.md", "SECURITY.md", "LICENSE", ".env.example"],
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "clean": "node scripts/clean-dist.mjs",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "start": "node dist/cli.js",
+    "setup": "npm run build && node dist/cli.js setup",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "scan-secrets": "node scripts/scan-secrets.mjs",
+    "check": "npm run scan-secrets && npm run typecheck && npm test && npm run build && node scripts/scan-secrets.mjs --include-dist"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.8.6",
+    "blessed": "^0.1.81",
+    "ethers": "^6.15.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/blessed": "^0.1.25",
+    "@types/node": "^22.15.30",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vitest": "^5.0.3"
+  }
+}
